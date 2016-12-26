@@ -6,6 +6,7 @@ class Solution(object):
 		else:
 			for i in range(l,r+1):
 				a[l], a[i] = a[i], a[l]
+				print i,l,r 
 				self.perm(a, l+1, r)
 				a[l], a[i] = a[i], a[l]
 
