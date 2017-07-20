@@ -2,6 +2,7 @@ s = [1,2,3,4,4,5,6,3,2,1,3]
 
 def find_peak(a, start, end):
 	middle = (start+end)/2
+	print middle, a[middle-1]
 	if a[middle-1]<=a[middle] and a[middle+1]<=a[middle]:
 		return a[middle]
 	if start==end:
