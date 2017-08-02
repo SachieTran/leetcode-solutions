@@ -1,16 +1,15 @@
-class Solution(object):
-    def maxA(self, N):
-        """
-        :type N: int
-        :rtype: int
-        """
-        max = N
-        middle = N/2
-        
-        if N > 5:
-            for i in range(2, middle+1):
-                temp = i^(N-2-i)
-                if temp>max:
-                    max = temp
-        
-        return max
+def maxA(N):
+    max = N
+    if N<=6:
+        return N
+    else:
+        for i in range(N-3,0,-1):
+            curr = maxA(i)*(N-i-1)
+            print i, curr
+            if curr>max:
+                max = curr
+
+    return max
+
+print maxA(11)
+
