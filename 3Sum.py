@@ -1,10 +1,12 @@
-s = [-1, 0, 1, 2, -1, -4]
+s = [1,2,-2,-1,0]
 class Solution(object):
     def threeSum(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
         """
+        if len(nums)==0:
+        	return []
         result = []
         self.hash = {}
         for i in xrange(len(nums)-1):
@@ -12,8 +14,11 @@ class Solution(object):
         		if -(nums[i]+nums[j]) in self.hash.keys():
         			if sorted([nums[i], nums[j], -(nums[i]+nums[j])]) not in result:
         				result.append(sorted([nums[i], nums[j], -(nums[i]+nums[j])]))
-        		else:
-        			self.hash[nums[i]] = 0
+        	
+        	self.hash[nums[i]] = 0
+
+        if len(result)==0:
+        	return []
         return result
 
 p = Solution()
