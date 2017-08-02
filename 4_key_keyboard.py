@@ -3,6 +3,7 @@ class Solution(object):
         print N
         max = N
         if N<=6:
+            self.d[N] = N
             return N
         else:
             for i in range(N-3,2,-1):
@@ -10,9 +11,10 @@ class Solution(object):
                     curr = self.d[i]*(N-i-1)
                 else:
                     curr = self.printA(i)*(N-i-1)
-                    self.d[N] = curr
+                    print self.d
                 if curr>max:
                     max = curr
+        self.d[N] = max
         return max
 
     def maxA(self, N):
@@ -20,4 +22,4 @@ class Solution(object):
         return self.printA(N)
 
 s = Solution()
-print s.maxA(19)
+print s.maxA(11)
