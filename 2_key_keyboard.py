@@ -1,16 +1,20 @@
 class Solution(object):
     def minSteps(self, n):
-        dp = [-1 for i in range(n+1)]
-
-        for i in range(2,n+1):
-            dp[i] = i
-            for j in range(i-1,1, -1):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n<=5:
+            return n
+        table = [i for i in range(n+1)]
+        
+        for i in range(6,n+1):
+            j = i/2
+            while(j>1):
+            	print i,j,dp[j]
                 if (i % j == 0):
-                    dp[i] = dp[j] + (i/j)
+                    table[i] = table[j] + (i/j)
                     break
-               
+                j-=1
+                	
         return dp[n]
-    
-
-p = Solution()
-print p.minSteps(5)
