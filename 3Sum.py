@@ -14,6 +14,8 @@ class Solution(object):
         result = {}
         nums = sorted(nums)
         self.hash = {nums[0]:0}
+        if len(nums)>3 and len(set(nums))==1:
+        	return [[nums[0],nums[0],nums[0]]]
        	#print nums
         done_list = [nums[0]]
         for i in xrange(1,len(nums)-1):
