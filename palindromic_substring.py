@@ -27,25 +27,23 @@ class Solution(object):
 
 
 	def countSubstrings(self, s):
-	    self.is_palindrome = {(val,i):0 for i,val in enumerate(s)}
-
-	    self.not_palindrome = {}
-	    self.count = len(s)
-
-	    for i in xrange(len(s)):
-	    	for left in xrange(i - 1, -1, -1):
-	    		tempString = s[left:i + 1]
-	    		self.updateHash(tempString, left)
-
-	    	for right in xrange(i+1,len(s)):
-	    		tempString = s[i:right+1]
-	    		self.updateHash(tempString, i)
-
-	    return [x[0] for x in self.is_palindrome.keys()]
+		if len(set(s))==1:
+			return len(s)*(len(s)+1)/2
+		self.is_palindrome = {(val,i):0 for i,val in enumerate(s)}
+		self.not_palindrome = {}
+		self.count = len(s)
+		for i in xrange(len(s)-1):
+			for j in range(i+1, len(s)):
+				tempString = s[i:j+1]
+				self.updateHash(tempString, i)
+		return len(self.is_palindrome.keys())
 
 
+#s = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+s = 'aaaa'
+print s
 p = Solution()
-print p.countSubstrings('aba')
+print p.countSubstrings(s)
 
 			
 			
