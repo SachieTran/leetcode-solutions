@@ -4,6 +4,8 @@ class Solution(object):
         :type pairs: List[List[int]]
         :rtype: int
         """
+        sorted_pairs = sorted(pairs, key = lambda x : (x[0], x[1]))
+        print sorted_pairs
 
 
 
