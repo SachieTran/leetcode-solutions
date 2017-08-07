@@ -14,11 +14,12 @@ class Solution(object):
 				res = self.longestPair(i)
 				if res >= self.table[n] and self.sorted_pairs[i][1]< self.sorted_pairs[n][0]:
 					self.table[n] = self.table[i] + 1
-		return
+		return self.table[n]
 
 
 
 
 s = [[1,2], [2,4], [2,3], [3,4]]
+s = [[5, 24], [15, 25], [27, 40], [50, 60]]
 p = Solution()
 print p.findLongestChain(s)
