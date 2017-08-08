@@ -1,8 +1,10 @@
 class Solution(object):
 
 	def findLongestChain(self, pairs):
+		print pairs
 		self.sorted_pairs = sorted(pairs, key = lambda x : (x[0], x[1]))
-		self.table = [1 for i in range(len(self.sorted_pairs))]
+		print self.sorted_pairs
+		self.table = [1] * len(self.sorted_pairs)]
 		self.processd = {}
 		self.longestPair(len(self.sorted_pairs)-1)
 		return max(self.table)
@@ -19,6 +21,7 @@ class Solution(object):
 					self.processd[i] = res
 				if res >= self.table[n] and self.sorted_pairs[i][1]< self.sorted_pairs[n][0]:
 					self.table[n] = self.table[i] + 1
+					break
 		return self.table[n]
 
 
