@@ -14,8 +14,7 @@ class Solution(object):
         """
         if root==None:
             return []
-        self.max_list = []
-        max = float("-inf")
+        self.node_list = []
         self.queue = deque()
         self.queue.append(root)
         self.queue.append('#')
@@ -24,21 +23,18 @@ class Solution(object):
         	current = self.queue.popleft()
         	if current=='#':
         		if not self.queue:
-        			self.max_list.append(max)
         			break
         		else:
         			self.queue.append('#')
-        			self.max_list.append(max)
-        			max = float("-inf")
+        			self.node_list.append('#')
         			continue
-        	else:
-
-        		if current.val>max:
-        			max = current.val
         	if current.left!=None:
         		self.queue.append(current.left)
+        		self.node_list.append('#')
         	if current.right!=None:
         		self.queue.append(current.right)
+        		self.node_list.append('#')
+        	print self.node_list
         	#self.showQueue()
 
         return self.max_list
