@@ -22,7 +22,7 @@ class Solution(object):
 		for dir in directions:
 			i,j = location[0]+dir[0], location[1]+dir[1]
 			if (0<=i<self.height) and (0<=j<self.width):
-				if board[i][j]=='E':
+				if board[i][j]=='E' and [i,j] not in self.queue:
 					self.queue.append([i, j])
 
 
