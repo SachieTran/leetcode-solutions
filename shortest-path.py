@@ -1,6 +1,7 @@
 import Queue
 import networkx as nx
 import matplotlib.pyplot as plt
+import random
 
 class Node(object):
 	def __init__(self, id):
@@ -39,15 +40,11 @@ class Graph(object):
 		for nodeId in self.nodes:
 			for adjascentNodeId in self.nodes[nodeId].adjascent.keys():
 				G.add_edge(nodeId, adjascentNodeId, weight=self.nodes[nodeId].adjascent[adjascentNodeId])
-		pos = nx.spring_layout(G, iterations=50)
+		pos = nx.circular_layout(G)
 		nx.draw(G, pos, with_labels=True)
 		labels = nx.get_edge_attributes(G,'weight')
 		nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
 		plt.show()
-
-
-
-
 
 
 	def shortestPath(self, id1, id2):
@@ -80,13 +77,15 @@ g.addNode(2)
 g.addNode(3)
 g.addNode(4)
 g.addNode(5)
+g.addNode(6)
+g.addNode(7)
 
-g.addEdge(1,2,2)
-g.addEdge(1,3,5)
-g.addEdge(1,5,8)
-g.addEdge(5,2,1)
-g.addEdge(3,4,4)
-g.addEdge(3,5,2)
+for i in xrange(g.num_vertices*(g.num_vertices-1)/2):
+	fromNode = random.randint(1, g.num_vertices)
+	toNode = random.randint(1, g.num_vertices)
+	if not fromNode==toNode:
+		g.addEdge(fromNode, toNode, random.randint(1,100))
+
 
 g.displayGraph()
 g.shortestPath(4,2)
