@@ -33,7 +33,7 @@ class Graph(object):
 		self.nodes[id1].adjascent[id2] = dist
 		self.nodes[id2].adjascent[id1] = dist
 
-	def displayGraph(self):
+	def displayGraph(self, result):
 		G = nx.Graph()
 		for nodeId in self.nodes:
 			G.add_node(nodeId)
@@ -41,10 +41,12 @@ class Graph(object):
 			for adjascentNodeId in self.nodes[nodeId].adjascent.keys():
 				G.add_edge(nodeId, adjascentNodeId, weight=self.nodes[nodeId].adjascent[adjascentNodeId])
 		pos = nx.circular_layout(G)
+		plt.title(result)
 		nx.draw(G, pos, with_labels=True)
 		labels = nx.get_edge_attributes(G,'weight')
 		nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
 		plt.show()
+		
 
 
 	def shortestPath(self, id1, id2):
@@ -60,8 +62,7 @@ class Graph(object):
 			current = Q.get()
 			currentNodeId, currentNodeDist = current[1], current[0]
 			if currentNodeId == id2:
-					print 'Shortest path from %s to %s is %f'%(id1,id2,currentNodeDist)
-					break
+					return 'Shortest path from %s to %s is %d'%(id1,id2,currentNodeDist)
 			visited[currentNodeId] = currentNodeDist
 			for adjascentNodeId in self.nodes[currentNodeId].adjascent.keys():
 				if adjascentNodeId not in visited:
@@ -72,20 +73,24 @@ class Graph(object):
 
 
 g = Graph()
-g.addNode(1)
-g.addNode(2)
-g.addNode(3)
-g.addNode(4)
-g.addNode(5)
-g.addNode(6)
-g.addNode(7)
 
-for i in xrange(g.num_vertices*(g.num_vertices-1)/2):
+# Choose number of nodes and edges in the graph. This will create a graph with given number of nodes and edges
+numberOfNodes = 10
+numberOfEdges = 20
+
+for nodeId in xrange(1, numberOfNodes+1):
+	g.addNode(nodeId)
+
+edgeCount = 0 
+while edgeCount<numberOfEdges:
 	fromNode = random.randint(1, g.num_vertices)
 	toNode = random.randint(1, g.num_vertices)
 	if not fromNode==toNode:
 		g.addEdge(fromNode, toNode, random.randint(1,100))
+		edgeCount+=1
 
 
-g.displayGraph()
-g.shortestPath(4,2)
+result = g.shortestPath(1,4)
+g.displayGraph(result) 
+
+
