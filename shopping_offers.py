@@ -38,17 +38,17 @@ class Solution(object):
         	if i==len(new_special):
         		return sum(map(lambda x,y: x*y, price, needs))
         	result = getLowestShoppingPrice(price, new_special, needs, i+1)
-        	print result, needs, i, new_special
+        	#print result, needs, i, new_special
         	for j in range(len(needs)):
         		needs[j]-=new_special[i][j]
-        	print 'needs', needs
+        	#print 'needs', needs
         	if all(need>=0 for need in needs):
         		result = min(result, new_special[i][-1] + getLowestShoppingPrice(price, new_special, needs, i ))
         	for j in range(len(needs)):
         		needs[j]+=new_special[i][j]
 
         	return result
-
+        
         return getLowestShoppingPrice(price, new_special, needs, 0)
 
     
@@ -57,7 +57,7 @@ class Solution(object):
 
 s = Solution()
 price = [2,3,4]
-special = [[1,1,0,4],[2,2,1,9]]
-needs = [1,2,1]
+special = [[1,1,0,4],[2,2,1,9], [1,1,0,4], [1,1,0,4], [2,2,1,9]]
+needs = [10,20,10]
 s.shoppingOffers(price, special, needs)
 

@@ -1,27 +1,37 @@
 class Solution(object):
-    def find132pattern(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: bool
-        """
-        ak = float("-inf")
-        st = []
-        print nums
-        for i in reversed(xrange(len(nums))):
-            print nums[i], ak, st
-            if nums[i] < ak:
-                print nums[i], ak, st
-                return True
-            else:
-                while st and nums[i] > st[-1]:
-                    ak = st.pop()
-            st.append(nums[i])
-            print ak, st
-
-            print '##########'
-        return False
-
+	def find132pattern(self, nums):
+	    a = nums
+	    min_list = []
+	    for i,val in enumerate(a):
+			if len(min_list)==0:
+				min_list.append(val)
+			else:
+				if val<min_list[i-1]:
+					min_list.append(val)
+				else:
+					min_list.append(min_list[i-1])
+	    print min_list
+	    stack = []
+	    flag=False
+	    for i in range(len(a)-1,-1,-1):
+		    if len(stack)==0:
+				stack.append(a[i])
+		    else:
+				while len(stack)>0:
+					#print stack
+					if a[i]>stack[0]:
+						if min_list[i]<stack[0]:
+							return True
+							flag = True
+							break
+						else:
+							stack.pop(0)
+					else:
+						break
+				stack = [a[i]] + stack	
+	    return False
 
 s = Solution()
-input = [1,3,4,2,4,3,2,1,2,3,4,3,2]
-print s.find132pattern(input)
+print s.find132pattern([2,4,3,4])
+
+
