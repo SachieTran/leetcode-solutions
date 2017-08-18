@@ -39,7 +39,10 @@ class Graph(object):
 		for nodeId in self.nodes:
 			for adjascentNodeId in self.nodes[nodeId].adjascent.keys():
 				G.add_edge(nodeId, adjascentNodeId, weight=self.nodes[nodeId].adjascent[adjascentNodeId])
-		nx.draw(G, with_labels=True)
+		pos = nx.spring_layout(G, iterations=50)
+		nx.draw(G, pos, with_labels=True)
+		labels = nx.get_edge_attributes(G,'weight')
+		nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
 		plt.show()
 
 
@@ -60,7 +63,7 @@ class Graph(object):
 			current = Q.get()
 			currentNodeId, currentNodeDist = current[1], current[0]
 			if currentNodeId == id2:
-					print 'Shortest path from %s to %s is %f',id1,id2,currentNodeDist
+					print 'Shortest path from %s to %s is %f'%(id1,id2,currentNodeDist)
 					break
 			visited[currentNodeId] = currentNodeDist
 			for adjascentNodeId in self.nodes[currentNodeId].adjascent.keys():
@@ -86,4 +89,4 @@ g.addEdge(3,4,4)
 g.addEdge(3,5,2)
 
 g.displayGraph()
-g.shortestPath(1,5)
+g.shortestPath(4,2)
