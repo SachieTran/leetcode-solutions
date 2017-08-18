@@ -34,7 +34,8 @@ while not Q.empty():
 	curentDist, currentWord = queueEnd[0], queueEnd[1]
 	visited[currentWord] = curentDist
 	if currentWord==target:
-		print 'Target reached with distance', curentDist
+		print currentWord
+		print 'Target reached with distance', curentDist+1
 		break 
 	for word in dictionary:
 		if isAdjascent(currentWord, word) and min_dist[word]>(curentDist+1) and word not in visited:
