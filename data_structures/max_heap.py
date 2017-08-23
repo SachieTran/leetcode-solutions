@@ -24,8 +24,16 @@ def buidHeap():
 		heapify(i, len(arr))
 
 
+
 print arr
 buidHeap()
+n = len(arr)
+for i in range(n-1,0,-1):
+	temp = arr[0]
+	arr[0] = arr[n-1]
+	arr[n-1] = temp
+	n-=1
+	heapify(0, n)
 print arr
 
 
