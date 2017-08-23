@@ -1,15 +1,16 @@
 ## Max - Heap
-arr = [2,1,3,5,1,2,3,6,8,5,3]
+arr = [1,12,9,5,6,10]
 
 def heapify(i, n):
+	#print arr, i
 	largest = i
 	l = i*2+1
 	r = i*2+2
 
-	if l<n and arr[l]>arr[i]:
+	if l<n and arr[l]>arr[largest]:
 		largest = l
 
-	if r<n and arr[r]>arr[i]:
+	if r<n and arr[r]>arr[largest]:
 		largest = r
 
 	if largest!=i:
@@ -18,9 +19,13 @@ def heapify(i, n):
 		arr[largest] = temp
 		heapify(largest, n)
 
+def buidHeap():
+	for i in range(len(arr)/2-1,-1,-1):
+		heapify(i, len(arr))
+
 
 print arr
-heapify(0, len(arr))
+buidHeap()
 print arr
 
 
