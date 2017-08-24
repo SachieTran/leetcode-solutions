@@ -1,5 +1,5 @@
 ## Max - Heap
-arr = [1,12,9,5,6,10]
+arr = [1,12,9,5,6,10, 17,2,25]
 
 def heapify(i, n):
 	#print arr, i

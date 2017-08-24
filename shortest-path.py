@@ -89,7 +89,6 @@ while edgeCount<numberOfEdges:
 		g.addEdge(fromNode, toNode, random.randint(1,100))
 		edgeCount+=1
 
-
 result = g.shortestPath(1,4)
 g.displayGraph(result) 
 
