@@ -2,7 +2,7 @@ def updateChecker(checker, n):
 	return checker | int(bin(1),2)<<n
 
 checker = 0
-s = 'abhzy'
+s = 'abhzydhdfh'
 flag = True
 for ch in s:
 	n = ord(ch)-ord('a')
