@@ -9,7 +9,7 @@ class Solution(object):
 	    start = 0
 	    for i in xrange(1, len(nums)):
 	    	current_sum+=nums[i]
-	    	while(current_sum>k and start<i):
+	    	while(current_sum>k and start<i-1):
 	    		current_sum-=nums[start]
 	    		start+=1
 
@@ -25,6 +25,6 @@ class Solution(object):
 
 s = Solution()
 a = [15, 2, 4, 8, 9, 5, 10, 23]
-sum = 12
+sum = 4
 s.checkSubarraySum(a,sum)
 
