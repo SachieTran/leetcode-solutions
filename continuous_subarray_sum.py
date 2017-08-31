@@ -27,4 +27,3 @@ s = Solution()
 a = [15, 2, 4, 8, 9, 5, 10, 23]
 sum = 4
 s.checkSubarraySum(a,sum)
-
