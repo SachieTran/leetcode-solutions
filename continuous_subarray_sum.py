@@ -1,29 +1,35 @@
 class Solution(object):
-	def checkSubarraySum(self, nums, k):
-	    """
-	    :type nums: List[int]
-	    :type k: int
-	    :rtype: bool
-	    """
-	    current_sum = nums[0]
-	    start = 0
-	    for i in xrange(1, len(nums)):
-	    	current_sum+=nums[i]
-	    	while(current_sum>k and start<i-1):
-	    		current_sum-=nums[start]
-	    		start+=1
+    def checkSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        remainders = {}
+        running_sum = 0
+        if len(nums)<2:
+            return False
+        if k == 0 :
+            for i in range(len(nums)-1):
+                if nums[i]==0 and nums[i+1]==0:
+                    return True
+            return False
+        for i, val in enumerate(nums):
+            running_sum+=val
+            if running_sum%k==0 and i>0:
+                return True
+            if k!=0:
+                running_sum%=k
+            prev = -1
+            if running_sum in remainders:
+                prev = remainders[running_sum]
+            if prev==-1:
+                remainders[running_sum] = i
+            elif (i-prev>0):
+                return True
+        return False
 
-	    	if current_sum==k:
-	    		print 'subarray found from ',start, 'to', i
-	    		return
 
-	    if current_sum==k:
-	    	print 'subarray found from ',start, 'to', i
-	    else:
-	    	print 'No subarray with sum',k,'found'
-
-
-s = Solution()
-a = [15, 2, 4, 8, 9, 5, 10, 23]
-sum = 4
-s.checkSubarraySum(a,sum)
+s = [1,1]
+o = Solution()
+print o.checkSubarraySum(s, 2)
