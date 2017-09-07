@@ -1,17 +1,27 @@
-a = [1,2,3]
+a = [1,3,2]
 
-def get_next(start,end):
-	if start==end:
+def nextPermutation(a):
+	pivot=len(a)-1
+	while pivot>0 and a[pivot]<a[pivot-1]:
+		pivot-=1
+	if pivot==0:
+		print "This is the max permutation"
 		return
-	else:
-		get_next(start+1,end)
-		if a[start]<a[end]:
-			temp = a[start]
-			a[start] = a[end]
-			a[end] = temp
-			print a
-			return
-		else:
-			get_next(start,end-1)
+	left_target = pivot-1
+	right_target = len(a)-1
+	while right_target>=pivot and a[right_target]<a[left_target]:
+		right_target-=1
+	right_target_val = a[right_target]
+	print a, a[left_target], a[pivot], a[right_target]
+	for i in range(right_target+1, len(a)):
+		a[i-1] = a[i]
+	a[len(a)-1] = a[left_target]
+	a[left_target] = right_target_val
+	print a
 
-get_next(0, len(a)-1)
+
+
+
+
+
+nextPermutation(a)
