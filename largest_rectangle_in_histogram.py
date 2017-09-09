@@ -1,34 +1,46 @@
-heights = [2,1,5,6,2,3]
+#heights = [2,1,5,6,2,3]
+heights = [2,1,2]
 print "########## ", heights
-index_stack = [-1]
-height_stack = [0]
-current_max = -1
 
-for i, val in enumerate(heights):
-	print i, val, index_stack, height_stack
-	if len(index_stack)==0:
-		index_stack.append(i)
-		height_stack.append(val)
-	elif height_stack[-1] < val:
-		index_stack.append(i)
-		height_stack.append(val)
-	elif height_stack[-1] > val:
-		while(height_stack[-1]>=val):
-			height = height_stack.pop(-1)
-			index = index_stack.pop(-1)
-			current_max = max(current_max, height*(i-index))
-		index_stack.append(i)
-		height_stack.append(val)
+class Solution(object):
+	def largestRectangleArea(self, heights):
+	    """
+	    :type heights: List[int]
+	    :rtype: int
+	    """
+	    index_stack = [0]
+	    height_stack = [-1]
+	    max_area = -1
+	    if len(heights)==0:
+	        return 0
+	    if len(heights)==1:
+	        return heights[0]
+	    for i,height in enumerate(heights):
+	        if i==0 or height>height_stack[-1]:
+	            index_stack.append(i)
+	            height_stack.append(height)
 
+	        elif height<height_stack[-1]:
+	            while len(height_stack)>0 and height<height_stack[-1]:
+	                temp_height = height_stack.pop(-1)
+	                temp_index = index_stack[-1]
+	                max_area = max(max_area, temp_height*(i-temp_index))
+	                if height_stack[-1]>height:
+	                	index_stack.pop(-1)
+	            height_stack.append(height)
+	            
+	    	#print index_stack,height_stack,max_area
 
-if len(height_stack)!=0:
-	while len(height_stack)!=0:
-		print i, val, index_stack, height_stack
-		height = height_stack.pop(-1)
-		index = index_stack.pop(-1)
-		current_max = max(current_max, height*(i+1-index))
-
-
-print current_max
+	    while len(height_stack)>0:
+	        temp_height = height_stack.pop(-1)
+	        temp_index = index_stack.pop(-1)
+	        max_area = max(max_area, temp_height*(i-temp_index+1))
+	    
+	    return max_area
+	        
+	    
+	    
+s = Solution()
+print s.largestRectangleArea(heights)
 
 		
