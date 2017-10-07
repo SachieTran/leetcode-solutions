@@ -30,6 +30,8 @@ class Solution(object):
             return 0
         if int(s)==0:
             return 0
+        if int(s[0])==0:
+            return 0
         else:
             return self._numDecodings(s)
 
