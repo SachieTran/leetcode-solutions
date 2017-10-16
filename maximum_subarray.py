@@ -15,4 +15,4 @@ for i,val in enumerate(a):
 		curr_sum = 0
 		left = i+1
 
-print global_max_sum, a[left:right+1]
+print global_max_sum, a[left:right+1]			

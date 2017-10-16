@@ -47,6 +47,10 @@ def maxSumPath(root):
 			leftPath = []
 		if rightPath == None:
 			rightPath = []
+
+		if root.data > root.data + rightVal:
+			
+
 		if rightVal>leftVal:
 			if root.data > (rightVal+root.data):
 				return root.data, [root.data]

@@ -11,5 +11,5 @@ def perm(a, start, end):
 			a[start] = a[i]
 			a[i] = tmp
 
-input = [1,2,3,4]
+input = [1,2,3,4 ]
 perm(input, 0, len(input)-1)
