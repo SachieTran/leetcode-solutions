@@ -33,7 +33,7 @@ class Solution(object):
 
         result = 0
         shifts = 0
-        while divisor < dividend:
+        while divisor <= dividend:
             #print "outer while"
             shifts  = 0
             while (divisor << shifts+1) < dividend:
