@@ -42,7 +42,7 @@ bool validateBrackets(string input){
 		char currentChar = input[i];
 		
 		if((currentChar == '{') || (currentChar == '[') || (currentChar == '(')){
-			stack.push_back(currentChar);
+			stack.insert(stack.begin(),currentChar);
 		}
 		else{
 			if(stack.empty()){
@@ -50,7 +50,7 @@ bool validateBrackets(string input){
 			}
 			else{
 				
-				char stackTop = stack.back();
+				char stackTop = stack.front();
 				
 				if(currentChar=='}' && stackTop != '{'){
 					return false;
@@ -62,7 +62,7 @@ bool validateBrackets(string input){
 					return false;
 				}
 				
-				stack.pop_back();
+				stack.erase(stack.begin());
 
 			}
 		}
